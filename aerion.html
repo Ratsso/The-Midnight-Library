@@ -1,22 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Aerion Common Room</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>House Aerion | The Midnight Library</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'EB Garamond', serif;
+      background: linear-gradient(to top, #0d1b2a, #1b263b);
+      color: #f1f1f1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://i.imgur.com/wG7zXwt.png') repeat;
+      animation: moveStars 100s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 5000px; }
+    }
+
+    .clouds {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.imgur.com/WN7jB6n.png') repeat-x;
+      animation: moveClouds 60s linear infinite;
+      opacity: 0.3;
+      z-index: 1;
+    }
+
+    @keyframes moveClouds {
+      from { background-position: 0 0; }
+      to { background-position: -2000px 0; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      padding: 50px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.2em;
+      color: #A2D2FF;
+    }
+
+    .crest {
+      width: 150px;
+      height: auto;
+      margin: 20px auto;
+    }
+
+    .traits {
+      list-style: none;
+      padding: 0;
+      font-size: 1.2em;
+    }
+
+    .traits li {
+      margin: 10px 0;
+    }
+
+    .description {
+      font-style: italic;
+      font-size: 1.1em;
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+    }
+
+    .button {
+      background-color: #A2D2FF;
+      color: #0d1b2a;
+      padding: 12px 25px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #89C2D9;
+    }
+
+    iframe {
+      margin-top: 40px;
+      border: none;
+      border-radius: 12px;
+    }
+  </style>
 </head>
 <body>
+
+  <div class="stars"></div>
+  <div class="clouds"></div>
+
   <div class="container">
-    <h1>🌪️ Welcome to Aerion</h1>
-    <p>House of air, intellect, curiosity, and boundless imagination.</p>
-    <button onclick="window.location.href='index.html'">Return Home</button>
-  </div>
-  <script>
-  window.onload = () => {
-    document.body.classList.add('loaded');
-  };
-</script>
-  <iframe width="0" height="0" src="https://www.youtube.com/embed/WKU8DJzipW4?si=VfLqAkNSrFsMY5wh&amp;controls=0" title="YouTube video player" frameborder="0" allow="autoplay;" allowfullscreen></iframe>
+    <img src="https://i.imgur.com/Y1zvAYL.png" alt="Aerion Crest" class="crest">
+    <h1>Welcome to House Aerion</h1>
+    <p class="description">“Those of Aerion soar with the wind — thinkers, dreamers, and seekers of forgotten truths. They embrace the unknown with curiosity, intuition, and grace. Where others see clouds, they chart constellations.”</p>
+
+    <ul class="traits">
+      <li>🌬️ Free-spirited</li>
+      <li>🔭 Introspective</li>
+      <li>📚 Inquisitive</li>
+      <li>🎓 Scholarly</li>
+    </ul>
+
+    <button class="button" onclick="location.href='library.html'">Begin Your Journey</button>
+    <iframe width="0" height="0" src="https://www.youtube.com/embed/WKU8DJzipW4?si=VfLqAkNSrFsMY5wh&amp;controls=0" title="YouTube video player" frameborder="0" allow="autoplay;" allowfullscreen></iframe>
   <style>
   iframe {
     position: absolute;
@@ -26,6 +131,39 @@
   }
 </style>
 
+    
+  </div>
 
 </body>
 </html>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
