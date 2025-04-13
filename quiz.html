@@ -301,6 +301,42 @@
     document.body.classList.add('loaded');
   };
 </script>
+<!-- Add this below your quiz script in sorting.html -->
+<div id="resultPopup" style="display: none; position: fixed; top: 30%; left: 50%; transform: translate(-50%, -50%); background: rgba(15,15,15,0.95); color: white; padding: 30px; border-radius: 12px; text-align: center; z-index: 999; box-shadow: 0 0 20px rgba(0,0,0,0.8);">
+  <h2 id="houseName" style="font-size: 2rem; margin-bottom: 10px;"></h2>
+  <p id="houseDescription" style="margin-bottom: 20px;"></p>
+  <button onclick="goToCommonRoom()" style="padding: 10px 20px; font-size: 1rem; background-color: #444; color: white; border: none; border-radius: 8px; cursor: pointer;">Enter Common Room</button>
+</div>
+
+<script>
+  const houseDescriptions = {
+    ignis: "Fierce, passionate, and unstoppable—Ignis blazes with creativity and courage.",
+    aerion: "Curious, clever, and endlessly imaginative—Aerion soars with intellect and grace.",
+    teralis: "Grounded, resilient, and fiercely loyal—Teralis stands as a pillar of wisdom and strength.",
+    obscura: "Mysterious, intuitive, and powerful—Obscura walks the shadowed paths of deep knowledge."
+  };
+
+  function showResult(house) {
+    const popup = document.getElementById("resultPopup");
+    document.getElementById("houseName").textContent = `You belong to ${house.charAt(0).toUpperCase() + house.slice(1)}!`;
+    document.getElementById("houseDescription").textContent = houseDescriptions[house.toLowerCase()];
+    popup.style.display = "block";
+
+    // Store result to redirect
+    localStorage.setItem("sortedHouse", house.toLowerCase());
+  }
+
+  function goToCommonRoom() {
+    const house = localStorage.getItem("sortedHouse");
+    if (house) {
+      window.location.href = `${house}.html`;
+    }
+  }
+
+  // Example: After computing quiz results, call this with the correct house
+  // showResult("aerion");
+</script>
+
 
 
 </body>
