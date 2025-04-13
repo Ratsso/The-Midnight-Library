@@ -1,0 +1,20 @@
+body {
+  background-color: #1c1c1e;
+  color: #e0e0e0;
+  font-family: 'Georgia', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.container {
+  text-align: center;
+}
+button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #3d3d3d;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
