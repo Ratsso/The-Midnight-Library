@@ -1,19 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sorting Quiz</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Sorting Quiz | The Midnight Library</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #f0eae2;
+      font-family: 'Georgia', serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: #decba4;
+    }
+
+    .question-container {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background-color: #2a2a2a;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #00000044;
+    }
+
+    .answers button {
+      display: block;
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #3c3c3c;
+      color: #f0eae2;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .answers button:hover {
+      background-color: #575757;
+    }
+
+    #result {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background-color: #292929;
+      border-left: 8px solid #888;
+      font-size: 1.2rem;
+      border-radius: 10px;
+    }
+
+    #common-room-btn {
+      margin-top: 1.5rem;
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background-color: #444;
+      color: #f0eae2;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    #common-room-btn:hover {
+      background-color: #666;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Sorting Quiz</h1>
-    <p>What draws you most?</p>
-    <button onclick="window.location.href='ignis.html'">Adventure</button>
-    <button onclick="window.location.href='aerion.html'">Curiosity</button>
-    <button onclick="window.location.href='teralis.html'">Balance</button>
-    <button onclick="window.location.href='obscura.html'">Secrets</button>
-  </div>
+
+<h1>Which House Awaits You?</h1>
+
+<div id="quiz-container"></div>
+<div id="result"></div>
+
+<script>
+  const quizQuestions = [
+    {
+      question: "The candle flickers. What do you do?",
+      answers: [
+        { text: "Relight it and keep moving.", value: "a" },
+        { text: "Watch the flame dance in silence.", value: "b" },
+        { text: "Check the wick and fix it properly.", value: "c" },
+        { text: "Let the darkness settle around you.", value: "d" }
+      ]
+    },
+    {
+      question: "You find a locked book with no title. You...",
+      answers: [
+        { text: "Try to force it open.", value: "a" },
+        { text: "Examine it for clues.", value: "c" },
+        { text: "Whisper secrets to it.", value: "d" },
+        { text: "Sketch the cover and wait.", value: "b" }
+      ]
+    },
+    {
+      question: "Midnight strikes. What’s your instinct?",
+      answers: [
+        { text: "Run toward the sound.", value: "a" },
+        { text: "Listen for hidden meaning.", value: "d" },
+        { text: "Look around, alert.", value: "c" },
+        { text: "Climb to see the stars.", value: "b" }
+      ]
+    },
+    {
+      question: "Which element draws you most?",
+      answers: [
+        { text: "Fire", value: "a" },
+        { text: "Air", value: "b" },
+        { text: "Earth", value: "c" },
+        { text: "Shadow", value: "d" }
+      ]
+    },
+    {
+      question: "A riddle leads you to two paths. One glows faintly, the other hums softly.",
+      answers: [
+        { text: "Take the glowing path.", value: "a" },
+        { text: "Follow the humming.", value: "d" },
+        { text: "Flip a coin and go.", value: "b" },
+        { text: "Search for a third option.", value: "c" }
+      ]
+    },
+    {
+      question: "Which role calls to you?",
+      answers: [
+        { text: "The rebel sparking change.", value: "a" },
+        { text: "The observer of hidden truths.", value: "d" },
+        { text: "The dreamer with ink-stained hands.", value: "b" },
+        { text: "The builder of secret sanctuaries.", value: "c" }
+      ]
+    },
+    {
+      question: "What do you value most in a companion?",
+      answers: [
+        { text: "Courage", value: "a" },
+        { text: "Curiosity", value: "b" },
+        { text: "Loyalty", value: "c" },
+        { text: "Mystery", value: "d" }
+      ]
+    },
+    {
+      question: "How do you take your tea?",
+      answers: [
+        { text: "Spiced and strong.", value: "a" },
+        { text: "Light and floral.", value: "b" },
+        { text: "Earthy and rich.", value: "c" },
+        { text: "Dark with whispers of herbs.", value: "d" }
+      ]
+    },
+    {
+      question: "You hear a whisper behind the bookshelf. You...",
+      answers: [
+        { text: "Call out immediately.", value: "a" },
+        { text: "Slip behind and eavesdrop.", value: "d" },
+        { text: "Ask the librarian.", value: "c" },
+        { text: "Hide and watch quietly.", value: "b" }
+      ]
+    },
+    {
+      question: "A door appears in your dreams. It’s marked with...",
+      answers: [
+        { text: "A flame.", value: "a" },
+        { text: "A feather.", value: "b" },
+        { text: "A stone.", value: "c" },
+        { text: "An eye.", value: "d" }
+      ]
+    },
+    {
+      question: "What do you leave behind?",
+      answers: [
+        { text: "Ashes.", value: "a" },
+        { text: "Echoes.", value: "b" },
+        { text: "Footprints.", value: "c" },
+        { text: "Clues.", value: "d" }
+      ]
+    },
+    {
+      question: "Pick a magical companion.",
+      answers: [
+        { text: "Phoenix", value: "a" },
+        { text: "Owl", value: "b" },
+        { text: "Badger", value: "c" },
+        { text: "Cat", value: "d" }
+      ]
+    },
+    {
+      question: "You must hide something. Where?",
+      answers: [
+        { text: "Under the fireplace.", value: "a" },
+        { text: "In plain sight.", value: "b" },
+        { text: "Beneath the roots of a tree.", value: "c" },
+        { text: "Behind a mirror.", value: "d" }
+      ]
+    },
+    {
+      question: "You have one spell. It lets you...",
+      answers: [
+        { text: "Start a fire anywhere.", value: "a" },
+        { text: "Float weightlessly.", value: "b" },
+        { text: "Shape stone.", value: "c" },
+        { text: "Become invisible in the dark.", value: "d" }
+      ]
+    },
+    {
+      question: "How do you begin a journey?",
+      answers: [
+        { text: "With boldness and a torch.", value: "a" },
+        { text: "With a map and a pencil.", value: "b" },
+        { text: "With boots and no plan.", value: "c" },
+        { text: "With a key and a secret.", value: "d" }
+      ]
+    }
+  ];
+
+  const houseNames = {
+    a: "Ignis",
+    b: "Aerion",
+    c: "Teralis",
+    d: "Obscura"
+  };
+
+  const houseDescriptions = {
+    Ignis: "Fierce, passionate, and unafraid to spark change.",
+    Aerion: "Curious, creative, and carried by the winds of thought.",
+    Teralis: "Grounded, loyal, and steady like stone.",
+    Obscura: "Secretive, intuitive, and seeker of the hidden truths."
+  };
+
+  const scores = { a: 0, b: 0, c: 0, d: 0 };
+  let currentQuestion = 0;
+
+  function showQuestion() {
+    const q = quizQuestions[currentQuestion];
+    const container = document.getElementById("quiz-container");
+    container.innerHTML = `
+      <div class="question-container">
+        <h2>${q.question}</h2>
+        <div class="answers">
+          ${q.answers.map(a =>
+            `<button onclick="selectAnswer('${a.value}')">${a.text}</button>`
+          ).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  function selectAnswer(value) {
+    scores[value]++;
+    currentQuestion++;
+    if (currentQuestion < quizQuestions.length) {
+      showQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    let max = 0;
+    let chosen = 'a';
+    for (let key in scores) {
+      if (scores[key] > max) {
+        max = scores[key];
+        chosen = key;
+      }
+    }
+    const house = houseNames[chosen];
+    const desc = houseDescriptions[house];
+    const resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = `
+      <strong>You have been sorted into <span style="color:#ffc107">${house}</span>!</strong><br>${desc}
+      <br><br>
+      <a id="common-room-btn" href="${house.toLowerCase()}.html">Enter the ${house} Common Room</a>
+    `;
+  }
+
+  showQuestion();
+</script>
+
 </body>
 </html>
