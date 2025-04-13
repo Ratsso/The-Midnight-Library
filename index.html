@@ -4,162 +4,138 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Midnight Library</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Libre+Baskerville&display=swap" rel="stylesheet">
   <style>
-    body {
+    body, html {
       margin: 0;
-      font-family: 'Cinzel Decorative', cursive;
-      background: linear-gradient(rgba(10, 10, 20, 0.8), rgba(10, 10, 20, 0.9)),
-                  url('https://images.unsplash.com/photo-1508264165352-258db2ebd59b?fit=crop&w=1600&q=80') no-repeat center center fixed;
-      background-size: cover;
+      padding: 0;
       overflow: hidden;
-      color: #eee;
-      transition: opacity 2s ease;
+      height: 100vh;
+      font-family: 'Libre Baskerville', serif;
+      color: white;
     }
 
-    body.fade-out {
-      opacity: 0;
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("https://i.ibb.co/Rpg2BbM8/1-6e-Jl-G1l8-XPPKfn-Uz-LIi-PWA.png") no-repeat center center/cover;
+      opacity: 0.25;
+      z-index: -3;
+      animation: float 30s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
     }
 
     .overlay {
       position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%);
+      z-index: -2;
+    }
+
+    .sparkles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .sparkles::before {
+      content: '';
+      position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      background: transparent;
+      animation: sparkle 15s linear infinite;
     }
 
-    .castle {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 250px;
-      background: url('https://i.ibb.co/h7tHgKJ/castle-silhouette.png') center bottom no-repeat;
-      background-size: contain;
-      opacity: 0.4;
-      z-index: 1;
-    }
-
-    .sparkle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      border-radius: 50%;
-      animation: twinkle 3s infinite ease-in-out;
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.1; }
-      50% { opacity: 0.9; }
+    @keyframes sparkle {
+      0%, 100% { background-position: 0 0; }
+      50% { background-position: 100% 100%; }
     }
 
     .content {
-      position: relative;
-      z-index: 2;
       text-align: center;
-      top: 30%;
-      transform: translateY(-30%);
-      padding: 2rem;
-      animation: fadeIn 3s ease-in;
-    }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: #dcd6f7;
-    }
-
-    p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      color: #ccc;
-    }
-
-    button {
-      background: #2c2f5c;
-      color: #fff;
-      border: none;
-      padding: 0.8rem 2rem;
-      font-size: 1rem;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background: #444877;
-    }
-
-    .floating {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      background: radial-gradient(circle, rgba(255,255,255,0.1), rgba(255,255,255,0));
-      border-radius: 50%;
-      animation: floatUp 25s linear infinite;
-    }
-
-    .floating:nth-child(1) { left: 20%; animation-delay: 0s; }
-    .floating:nth-child(2) { left: 50%; animation-delay: 5s; }
-    .floating:nth-child(3) { left: 70%; animation-delay: 10s; }
-
-    @keyframes floatUp {
-      0% { bottom: -100px; opacity: 0.1; }
-      50% { opacity: 0.3; }
-      100% { bottom: 120%; opacity: 0; }
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: fadeIn 4s ease-out;
+      padding: 20px;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(-50%); }
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 3em;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      max-width: 600px;
+      margin: auto;
+      font-size: 1.2em;
+      line-height: 1.8em;
+    }
+
+    .journey-button {
+      margin-top: 2em;
+      padding: 0.8em 2em;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 10px;
+      background: #372f72;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .journey-button:hover {
+      background: #5141a4;
+      box-shadow: 0 0 25px rgba(255,255,255,0.6);
+    }
+
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
+  <div class="background"></div>
   <div class="overlay"></div>
-  <div class="floating"></div>
-  <div class="floating"></div>
-  <div class="floating"></div>
-
-  <!-- ✨ Sparkles -->
-  <script>
-    for (let i = 0; i < 50; i++) {
-      const star = document.createElement('div');
-      star.className = 'sparkle';
-      star.style.top = `${Math.random() * 100}%`;
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.animationDuration = `${2 + Math.random() * 3}s`;
-      document.body.appendChild(star);
-    }
-  </script>
-
-  <div class="castle"></div>
+  <div class="sparkles"></div>
 
   <div class="content">
-    <h1>Welcome to The Midnight Library</h1>
+    <h1>Welcome to the Midnight Library</h1>
     <p>
-      Beneath the stars and across the quiet waters, something magical stirs.
-      Your story begins now. Step aboard the boat and let the mist guide you home.
+      Beneath the stars and across the quiet waters, something magical stirs. Your story begins now.
+      Step aboard the boat and let the mist guide you home.
     </p>
-    <button onclick="startJourney()">Begin Your Journey</button>
+    <button class="journey-button" onclick="location.href='quiz.html'">Begin Your Journey</button>
   </div>
 
-  <!-- Background lake sounds -->
+  <!-- Lake Ambience -->
   <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2023/03/01/audio_a24e8750e4.mp3?filename=lake-nature-loop-142295.mp3" type="audio/mpeg">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/24/audio_d0adf2c9d1.mp3?filename=lake-nature-sounds-ambient-loop-24035.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
-
-  <!-- Fade transition -->
-  <script>
-    function startJourney() {
-      document.body.classList.add('fade-out');
-      setTimeout(() => {
-        window.location.href = 'sorting.html';
-      }, 2000);
-    }
-  </script>
 </body>
 </html>
+
 
